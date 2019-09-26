@@ -1,10 +1,10 @@
 #include "monty.h"
+
 /**
 * parse_line - Parses a line in to tokens, only get two first tokens
 * @line: line mode by user
 * Return:  tokens, or NULL if failed
 */
-
 char **parse_line(char *line)
 {
 	char *token, **tokens;
@@ -13,7 +13,7 @@ char **parse_line(char *line)
 	tokens = malloc(sizeof(char *) * 3);
 	if (tokens == NULL)
 	{
-		dprintf(STDOUT_FILENO, "Error: malloc failed\n");	
+		dprintf(STDOUT_FILENO, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, " '\n'");
@@ -35,7 +35,7 @@ char **parse_line(char *line)
 
 int arg = 0;
 /**
- * get_function - interprets and execute functions from tokens
+ * get_op_func - interprets and execute functions from tokens
  * @tokens: array of strings
  * @ln: line number in monty code file
  *
@@ -77,7 +77,7 @@ void(*get_op_func(char **tokens, unsigned int ln))(stack_t **, unsigned int)
 		}
 		i++;
 	}
-	dprintf(STDOUT_FILENO,"L%d: unknown instruction %s\n", ln, tokens[0]);
+	dprintf(STDOUT_FILENO, "L%d: unknown instruction %s\n", ln, tokens[0]);
 	free(tokens);
 	exit(EXIT_FAILURE);
 
