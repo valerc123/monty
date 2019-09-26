@@ -23,7 +23,7 @@ void interpret(char *file_name)
 	while (getline(&buffer, &size, file) != -1)
 	{
 		line_number++;
-		tokens = parser(buffer);
+		tokens = parse_line(buffer);
 		if (tokens == NULL)
 			continue;
 		else
