@@ -35,14 +35,14 @@ void interpret(char *file_name)
 }
 
 /**
- * input - takes input from user
+ * main - takes input from user
  * @argc: argument numbers
  * @argv: arguments recieved by user
  *
  * Return: 0 or EXIT on failure
  */
 
-int input(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	char *file_name;
 
