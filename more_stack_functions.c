@@ -33,7 +33,7 @@ void error_func(char *messagge, unsigned int line_number)
 {
 	if (messagge == NULL)
 		return;
-	dprintf(STDOUT_FILENO, "L%u: %s\n", line_number, messagge);
+	fprintf(stderr, "L%u: %s\n", line_number, messagge);
 	exit(EXIT_FAILURE);
 }
 /**

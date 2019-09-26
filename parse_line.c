@@ -13,7 +13,7 @@ char **parse_line(char *line)
 	tokens = malloc(sizeof(char *) * 3);
 	if (tokens == NULL)
 	{
-		dprintf(STDOUT_FILENO, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, " '\n'");
@@ -77,7 +77,7 @@ void(*get_op_func(char **tokens, unsigned int ln))(stack_t **, unsigned int)
 		}
 		i++;
 	}
-	dprintf(STDOUT_FILENO, "L%d: unknown instruction %s\n", ln, tokens[0]);
+	fprintf(stderr, "L%d: unknown instruction %s\n", ln, tokens[0]);
 	free(tokens);
 	exit(EXIT_FAILURE);
 

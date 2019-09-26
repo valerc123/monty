@@ -17,7 +17,7 @@ void readfile(char *filename)
 	file = fopen(filename, "r");
 	if (file == NULL)
 	{
-		printf("Error: Can't open file %s\n", filename);
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
 	while (-1 != getline(&buffer, &size, file))
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 	file_name = argv[1];
 	if (argc != 2)
 	{
-		dprintf(STDOUT_FILENO, "USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	readfile(file_name);
