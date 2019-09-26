@@ -37,7 +37,7 @@ void op_push(stack_t **stack, unsigned int line_number)
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
-		printf("Error: malloc failed\n");
+		error_func("usage: push integer", line_number);
 		exit(EXIT_FAILURE);
 	}
 	new_node->n = arg;
@@ -62,7 +62,7 @@ char swap(char **stack, unsigned int line_number)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		printf("Error");
+		error_func("can't swap, stack too short", line_number);
 	}
 	ptr = (*stack)->next;
 	(*stack)->prev = ptr;

@@ -17,7 +17,7 @@ void interpret(char *file_name)
 	file = fopen(file_name, "r");
 	if (file == NULL)
 	{
-		printf("Error: Can't open file %s\n", file_name);
+		dprintf(STDOUT_FILENO, "Error: Can't open file %s\n", file_name);
 		exit(EXIT_FAILURE);
 	}
 	while (getline(&buffer, &size, file) != -1)
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 	file_name = argv[1];
 	if (argc != 2)
 	{
-		printf("USAGE: monty file\n");
+		dprintf(STDOUT_FILENO, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	interpret(file_name);

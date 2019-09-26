@@ -20,6 +20,13 @@ void op_nop(stack_t **stack, unsigned int line_number)
 void op_pint(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)
-		error_func(line_number, 2);
+		error_func("can't pint, stack empty",line_number);
 	printf("%d\n", (*stack)->n);
+}
+
+void error_func(char *messagge, unsigned int line_number)
+{
+    	if (!messagge)
+		return;
+	dprintf(STDOUT_FILENO,"L%u: %s\n",line_number, messagge);
 }
