@@ -7,8 +7,7 @@
 
 char **parse_line(char *line)
 {
-	char *token;
-	char **tokens;
+	char *token, **tokens;
 	unsigned int i;
 
 	tokens = malloc(sizeof(char *) * 3);
@@ -34,6 +33,7 @@ char **parse_line(char *line)
 	return (tokens);
 }
 
+int arg = 0;
 /**
  * get_function - interprets and execute functions from tokens
  * @tokens: array of strings
@@ -52,6 +52,7 @@ void(*get_function(char **tokens, unsigned int ln))(stack_t **, unsigned int)
 		{"pint", op_pint},
 		{"nop", op_nop},
 		{"swap", op_swap},
+		{"add", op_add},
 		{NULL, NULL}
 	};
 	unsigned int i = 0;
