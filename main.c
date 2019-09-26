@@ -1,33 +1,33 @@
 #include "monty.h"
 /**
- * interpret - interprets the file (reading)
- * @file_name: file's path
+ * readfile - interprets the file (reading)
+ * @filename: file's path
  *
  * Return: void
  */
 
-void interpret(char *file_name)
+void readfile(char *filename)
 {
 	stack_t *stack = NULL;
-	FILE *file;
+	int line_number = 0;
 	char **tokens, *buffer = NULL;
 	size_t size = 0;
-	int line_number = 0;
+	FILE *file;
 
-	file = fopen(file_name, "r");
+	file = fopen(filename, "r");
 	if (file == NULL)
 	{
-		dprintf(STDOUT_FILENO, "Error: Can't open file %s\n", file_name);
+		printf("Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
-	while (getline(&buffer, &size, file) != -1)
+	while (-1 != getline(&buffer, &size, file))
 	{
 		line_number++;
 		tokens = parse_line(buffer);
 		if (tokens == NULL)
 			continue;
 		else
-			get_function(tokens, line_number)(&stack, line_number);
+			get_op_func(tokens, line_number)(&stack, line_number);
 	}
 	fclose(file);
 	free(buffer);
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 		dprintf(STDOUT_FILENO, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	interpret(file_name);
+	readfile(file_name);
 	return (0);
 }
 

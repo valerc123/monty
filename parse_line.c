@@ -43,7 +43,7 @@ int arg = 0;
  */
 
 
-void(*get_function(char **tokens, unsigned int ln))(stack_t **, unsigned int)
+void(*get_op_func(char **tokens, unsigned int ln))(stack_t **, unsigned int)
 {
 	instruction_t ops[] = {
 		{"push", op_push},

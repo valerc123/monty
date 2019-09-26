@@ -43,7 +43,7 @@ extern int arg;
 char **parse_line(char *line);
 int valid_op(char **tokens);
 int valid_arg(char *tokens);
-void (*get_function(char **, unsigned int))(stack_t **, unsigned int);
+void (*get_op_func(char **, unsigned int))(stack_t **, unsigned int);
 void op_push(stack_t **stack, unsigned int line_number);
 void op_pall(stack_t **stack, unsigned int line_number);
 void op_pop(stack_t **stack, unsigned int line_number);
