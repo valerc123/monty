@@ -67,7 +67,7 @@ void(*get_function(char **tokens, unsigned int ln))(stack_t **, unsigned int)
 		if ((strcmp(ops[i].opcode, tokens[0]) == 0))
 		{
 			if ((strcmp(ops[i].opcode, "push") == 0) &&
-			(tokens[1] == NULL || (!(valid_arg(tokens[1])))))
+				(tokens[1] == NULL || (!(valid_arg(tokens[1])))))
 			{
 				free(tokens);
 				printf("L%d: usage: push integer\n", ln);
@@ -78,7 +78,7 @@ void(*get_function(char **tokens, unsigned int ln))(stack_t **, unsigned int)
 			free(tokens);
 			return (ops[i].f);
 		}
-	i++;
+		i++;
 	}
 	printf("L%d: unknown instruction %s\n", ln, tokens[0]);
 	free(tokens);
