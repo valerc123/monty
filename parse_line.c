@@ -1,9 +1,10 @@
 #include "monty.h"
 /**
 * parse_line - Parses a line in to tokens, only get two first tokens
-* @line: string to tokenize
-* Return: double pointer of tokens, or NULL if failed
+* @line: line mode by user
+* Return:  tokens, or NULL if failed
 */
+
 char **parse_line(char *line)
 {
 	char *token;
@@ -23,7 +24,11 @@ char **parse_line(char *line)
 		return (NULL);
 	}
 	i = 0;
+<<<<<<< HEAD
 	while (token != NULL && i < 2)
+=======
+	while (token != NULL)
+>>>>>>> 0bc2ea9d4f05e42faeb63969262e0f1707172efb
 	{
 		tokens[i] = token;
 		token = strtok(NULL, " '\n'");
@@ -31,4 +36,99 @@ char **parse_line(char *line)
 	}
 	tokens[i] = NULL;
 	return (tokens);
+}
+
+
+/**
+ * get_function - interprets and execute functions from tokens
+ * @tokens: array of strings
+ * @ln: line number in monty code file
+ *
+ * Return: proper function or NULL
+ */
+
+
+void(*get_function(char **tokens, unsigned int ln))(stack_t **, unsigned int)
+{
+instruction_t ops[] = {
+		{"push", op_push},
+		{"pall", op_pall},
+		{"pop", op_pop},
+		{"pint", op_pint},
+		{"nop", op_nop},
+		{"swap", op_swap},
+		{NULL, NULL}
+	};
+	unsigned int i = 0;
+
+	if (tokens[0][0] == '#')
+	{
+		free(tokens);
+		return (op_nop);
+	}
+	while (ops[i].opcode != NULL)
+	{
+		if ((strcmp(ops[i].opcode, tokens[0]) == 0))
+		{
+			if ((strcmp(ops[i].opcode, "push") == 0) &&
+			(tokens[1] == NULL || (!(valid_arg(tokens[1])))))
+			{
+				free(tokens);
+				printf("L%d: usage: push integer\n", ln);
+				exit(EXIT_FAILURE);
+			}
+			else if ((strcmp(ops[i].opcode, "push") == 0))
+				arg = atoi(tokens[1]);
+			free(tokens);
+			return (ops[i].f);
+		}
+	i++;
+	}
+	printf("L%d: unknown instruction %s\n", ln, tokens[0]);
+	free(tokens);
+	exit(EXIT_FAILURE);
+
+}
+
+/**
+ * valid_arg - checks for a token validity
+ * @token: argument token from valid_op.
+ *
+ * Return: 1 if valid argument, 0 if not
+ */
+int valid_arg(char *token)
+{
+	unsigned int i;
+
+	if (token == NULL)
+		return (1);
+	i = 0;
+	while (token[i] != '\0')
+	{
+		if (token[0] == '-')
+		{
+			if ((!(token[1] >= '0' && token[1] <= '9')) || token[1] == '\0')
+				return (0);
+			i = 1;
+			while (token[i] >= '0' && token[i] <= '9')
+			{
+				i++;
+				if (token[i] == '\0')
+					return (1);
+			}
+			return (0);
+		}
+		else
+		{
+			i = 0;
+			while (token[i] >= '0' && token[i] <= '9')
+			{
+				i++;
+				if (token[i] == '\0')
+					return (1);
+			}
+			return (0);
+		}
+	}
+	return (0);
 }
