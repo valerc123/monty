@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  * op_pall - Prints all elements of the stack
  * @stack: doubly linked list representation of the stack
@@ -19,8 +20,11 @@ void op_pall(stack_t **stack, unsigned int line_number)
 		ptr = ptr->next;
 	}
 }
+
+int arg = 0; 
+
 /**
- * op_push - Pushes an element onto the stack
+ * op_push - Pushes an element into the stack
  * @stack: doubly linked list representation of the stack
  * @line_number: Line number of the instruction
  * Return: void
@@ -45,4 +49,25 @@ void op_push(stack_t **stack, unsigned int line_number)
 	*stack = new_node;
 	if (new_node->next != NULL)
 		new_node->next->prev = new_node;
+}
+/**
+ * op_swap - swaps top two elements of the stack
+ * @stack: doubly linked list representation of the stack
+ * @line_number: Line number of the instruction
+ * Return: void
+ */
+char swap(char **stack, unsigned int line_number)
+{
+    char *ptr;
+    
+    if (*stack == NULL || (*stack)->next == NULL)
+    {
+        printf("Error"); //add Error fucntion
+    }
+    ptr = (*stack)->next;
+    (*stack)->prev = ptr;
+    (*stack)->next = ptr->next;
+    ptr->prev = NULL;
+    ptr->next = *stack;
+    *stack = ptr;
 }
