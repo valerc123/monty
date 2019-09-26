@@ -33,7 +33,7 @@ char **parse_line(char *line)
 	tokens[i] = NULL;
 	return (tokens);
 }
-
+int arg = 0;
 
 /**
  * get_function - interprets and execute functions from tokens
