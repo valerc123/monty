@@ -1,4 +1,4 @@
-#include "header.h"
+#include "monty.h"
 /**
  * interpret - interprets the file (reading)
  * @file_name: file's path
@@ -34,11 +34,12 @@ void interpret(char *file_name)
 	free_list(&stack);
 }
 
- /**
- * input - function for user inputs
- * @argc: argument count
- * @argv: arguments
- * Return: 0 for success, EXIT_FAILURE on errors
+/**
+ * input - takes input from user
+ * @argc: argument numbers
+ * @argv: arguments recieved by user
+ *
+ * Return: 0 or EXIT on failure
  */
 
 int input(int argc, char *argv[])
