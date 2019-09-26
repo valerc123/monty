@@ -24,11 +24,7 @@ char **parse_line(char *line)
 		return (NULL);
 	}
 	i = 0;
-<<<<<<< HEAD
 	while (token != NULL && i < 2)
-=======
-	while (token != NULL)
->>>>>>> 0bc2ea9d4f05e42faeb63969262e0f1707172efb
 	{
 		tokens[i] = token;
 		token = strtok(NULL, " '\n'");
@@ -50,7 +46,7 @@ char **parse_line(char *line)
 
 void(*get_function(char **tokens, unsigned int ln))(stack_t **, unsigned int)
 {
-instruction_t ops[] = {
+	instruction_t ops[] = {
 		{"push", op_push},
 		{"pall", op_pall},
 		{"pop", op_pop},
