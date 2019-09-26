@@ -21,7 +21,7 @@ void op_pall(stack_t **stack, unsigned int line_number)
 	}
 }
 
-int arg = 0; 
+int arg = 0;
 
 /**
  * op_push - Pushes an element into the stack
@@ -58,16 +58,16 @@ void op_push(stack_t **stack, unsigned int line_number)
  */
 char swap(char **stack, unsigned int line_number)
 {
-    char *ptr;
-    
-    if (*stack == NULL || (*stack)->next == NULL)
-    {
-        printf("Error"); //add Error fucntion
-    }
-    ptr = (*stack)->next;
-    (*stack)->prev = ptr;
-    (*stack)->next = ptr->next;
-    ptr->prev = NULL;
-    ptr->next = *stack;
-    *stack = ptr;
+	char *ptr;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		printf("Error");
+	}
+	ptr = (*stack)->next;
+	(*stack)->prev = ptr;
+	(*stack)->next = ptr->next;
+	ptr->prev = NULL;
+	ptr->next = *stack;
+	*stack = ptr;
 }
