@@ -13,7 +13,7 @@ void op_mul(stack_t **stack, unsigned int line_number)
 		error_func("can't mul, stack too short", line_number);
 	ptr = *stack;
 	if (ptr->next == NULL)
-	error_func("can't mul, stack too short", line_number);
+		error_func("can't mul, stack too short", line_number);
 	ptr->next->n *= (*stack)->n;
 	*stack = (*stack)->next;
 	free(ptr);
@@ -82,7 +82,7 @@ void op_sub(stack_t **stack, unsigned int line_number)
 	}
 	ptr = *stack;
 	if (ptr->next == NULL)
-	error_func("can't sub, stack too short", line_number);
+		error_func("can't sub, stack too short", line_number);
 	ptr->next->n -= (*stack)->n;
 	*stack = (*stack)->next;
 	free(ptr);
