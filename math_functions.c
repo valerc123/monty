@@ -10,10 +10,10 @@ void op_mul(stack_t **stack, unsigned int line_number)
 	stack_t *ptr;
 
 	if (*stack == NULL || (*stack)->next == NULL)
-		error_func(line_number, 9);
+		error_func("can't mul, stack too short", line_number);
 	ptr = *stack;
 	if (ptr->next == NULL)
-	error_func(line_number, 9);
+	error_func("can't mul, stack too short", line_number);
 	ptr->next->n *= (*stack)->n;
 	*stack = (*stack)->next;
 	free(ptr);
@@ -31,13 +31,13 @@ void op_div(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		error_func(line_number, 7);
+		error_func("can't div, stack too short", line_number);
 	}
 	ptr = *stack;
 	if (ptr->n == 0)
-		error_func(line_number, 8);
+		error_func("division by zero", line_number);
 	if (ptr->next == NULL)
-		error_func(line_number, 7);
+		error_func("can't div, stack too short", line_number);
 	ptr->next->n /= (*stack)->n;
 	*stack = (*stack)->next;
 	free(ptr);
@@ -55,12 +55,12 @@ void op_mod(stack_t **stack, unsigned int line_number)
 	stack_t *ptr;
 
 	if (*stack == NULL || (*stack)->next == NULL)
-		error_func(line_number, 10);
+		error_func("can't mod, stack too short", line_number);
 	ptr = *stack;
 	if (ptr->n == 0)
-		error_func(line_number, 11);
+		error_func("division by zero", line_number);
 	if (ptr->next == NULL)
-		error_func(line_number, 10);
+		error_func("can't mod, stack too short", line_number);
 	ptr->next->n %= (*stack)->n;
 	*stack = (*stack)->next;
 	free(ptr);
@@ -78,11 +78,11 @@ void op_sub(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		error_func(line_number, 6);
+		error_func("can't sub, stack too short", line_number);
 	}
 	ptr = *stack;
 	if (ptr->next == NULL)
-	error_func(line_number, 6);
+	error_func("can't sub, stack too short", line_number);
 	ptr->next->n -= (*stack)->n;
 	*stack = (*stack)->next;
 	free(ptr);
