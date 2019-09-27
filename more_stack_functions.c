@@ -1,29 +1,5 @@
 #include "monty.h"
 /**
- * op_nop - doesnt do anything
- * @stack: our stack
- * @line_number: instruction number
- * Return: void
- */
-void op_nop(stack_t **stack, unsigned int line_number)
-{
-	(void) stack;
-	(void) line_number;
-}
-
-/**
- * op_pint - Prints stacks top value
- * @stack: our stack
- * @line_number: instruction number
- * Return: void
- */
-void op_pint(stack_t **stack, unsigned int line_number)
-{
-	if (*stack == NULL)
-		error_func("can't pint, stack empty", line_number);
-	printf("%d\n", (*stack)->n);
-}
-/**
  * error_func - prints error messages and the exits the program.
  * @line_number: line number of the monty file
  * @messagge: error message  given
@@ -37,29 +13,54 @@ void error_func(char *messagge, unsigned int line_number)
 	exit(EXIT_FAILURE);
 }
 /**
- * op_pop - Removes stacks top element
- * @stack: our stack
- * @line_number: instruction number
- * Return: void
+ * op_pchar - prints the char at the top of the stack, followed by a new line
+ * @stack: head node to the stack
+ * @line_number: line number of the monty file
+ * Return: void (EXIT_FAILURE) exit status
  */
-void op_pop(stack_t **stack, unsigned int line_number)
+void op_pchar(stack_t **stack, unsigned int line_number)
 {
-	stack_t *ptr;
+	int x = 0;
 
-	if (*stack == NULL)
-		error_func("can't pop an empty stack", line_number);
-
-	if ((*stack)->next == NULL)
+	if (*stack == NULL || stack == NULL)
+		error_func("can't pchar, stack empty", line_number);
+	x = (*stack)->n;
+	if (x >= 1 && x <= 127)
 	{
-		free(*stack);
-		*stack = NULL;
+		putchar(x);
+		putchar('\n');
 	}
 	else
 	{
-		ptr = (*stack)->next;
-		(*stack) = ptr;
-		ptr = ptr->prev;
-		(*stack)->prev = NULL;
-		free(ptr);
+		error_func("can't pchar, value out of range", line_number);
+	}
+}
+/**
+ * op_pstr - prints the string starting at the top of the stack
+ * @stack: head node to the stack.
+ * @line_number: line number of the monty file
+ * Return: void
+ */
+void op_pstr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *ptr;
+	int x = 0;
+
+	(void)line_number;
+	if (*stack == NULL || stack == NULL)
+		putchar('\n');
+	else
+	{
+		ptr = *stack;
+		while (ptr != NULL)
+		{
+			x = ptr->n;
+			if (x >= 1 && x <= 127)
+				putchar(x);
+			else
+				break;
+			ptr = ptr->next;
+		}
+		putchar('\n');
 	}
 }

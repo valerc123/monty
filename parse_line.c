@@ -55,6 +55,8 @@ void(*get_op_func(char **tokens, unsigned int ln))(stack_t **, unsigned int)
 		{"mul", op_mul},
 		{"div", op_div},
 		{"mod", op_mod},
+		{"pchar", op_pchar},
+		{"pstr", op_pstr},
 		{NULL, NULL}
 	};
 	unsigned int i = 0;

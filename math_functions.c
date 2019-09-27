@@ -84,3 +84,25 @@ void op_sub(stack_t **stack, unsigned int line_number)
 	free(ptr);
 	(*stack)->prev = NULL;
 }
+/**
+ * op_add - adds the n value
+ * @stack: our stack
+ * @line_number: line instruction
+ * Return: void
+ */
+void op_add(stack_t **stack, unsigned int line_number)
+{
+        stack_t *ptr;
+
+        if (*stack == NULL || (*stack)->next == NULL)
+        {
+                error_func("can't add, stack too short", line_number);
+        }
+        ptr = *stack;
+        if (ptr->next == NULL)
+                error_func("can't add, stack too short", line_number);
+        ptr->next->n += (*stack)->n;
+        *stack = (*stack)->next;
+        free(ptr);
+        (*stack)->prev = NULL;
+}

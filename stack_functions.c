@@ -20,8 +20,33 @@ void op_pall(stack_t **stack, unsigned int line_number)
 		ptr = ptr->next;
 	}
 }
+/**
+ * op_pop - Removes stacks top element
+ * @stack: our stack
+ * @line_number: instruction number
+ * Return: void
+ */
+void op_pop(stack_t **stack, unsigned int line_number)
+{
+        stack_t *ptr;
 
+        if (*stack == NULL)
+                error_func("can't pop an empty stack", line_number);
 
+        if ((*stack)->next == NULL)
+        {
+                free(*stack);
+                *stack = NULL;
+        }
+        else
+        {
+                ptr = (*stack)->next;
+                (*stack) = ptr;
+                ptr = ptr->prev;
+                (*stack)->prev = NULL;
+                free(ptr);
+        }
+}
 /**
  * op_push - Pushes an element into the stack
  * @stack: doubly linked list representation of the stack
@@ -70,27 +95,27 @@ void op_swap(stack_t **stack, unsigned int line_number)
 	ptr->next = *stack;
 	*stack = ptr;
 }
-
-#include "monty.h"
 /**
- * op_add - adds the n value
+ * op_nop - doesnt do anything
  * @stack: our stack
- * @line_number: line instruction
+ * @line_number: instruction number
  * Return: void
  */
-void op_add(stack_t **stack, unsigned int line_number)
+void op_nop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *ptr;
+        (void) stack;
+        (void) line_number;
+}
 
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		error_func("can't add, stack too short", line_number);
-	}
-	ptr = *stack;
-	if (ptr->next == NULL)
-		error_func("can't add, stack too short", line_number);
-	ptr->next->n += (*stack)->n;
-	*stack = (*stack)->next;
-	free(ptr);
-	(*stack)->prev = NULL;
+/**
+ * op_pint - Prints stacks top value
+ * @stack: our stack
+ * @line_number: instruction number
+ * Return: void
+ */
+void op_pint(stack_t **stack, unsigned int line_number)
+{
+        if (*stack == NULL)
+                error_func("can't pint, stack empty", line_number);
+        printf("%d\n", (*stack)->n);
 }
