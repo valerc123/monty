@@ -32,7 +32,7 @@ void op_mul(stack_t **stack, unsigned int line_number)
 	{
 		error_func("can't mul, stack too short", line_number);
 		error_free(*stack);
-	}	
+	}
 	ptr = *stack;
 	if (ptr->next == NULL)
 		error_func("can't mul, stack too short", line_number);
