@@ -51,6 +51,10 @@ void(*get_op_func(char **tokens, unsigned int ln))(stack_t **, unsigned int)
 		{"nop", op_nop},
 		{"swap", op_swap},
 		{"add", op_add},
+		{"sub", op_sub},
+		{"mul", op_mul},
+		{"div", op_div},
+		{"mod", op_mod},
 		{NULL, NULL}
 	};
 	unsigned int i = 0;
